@@ -4,13 +4,11 @@ Java and Scala are usually the preferred choice given the fact that they are muc
 
 So, how if we could instead improve Python´s speed? There are many techniques, but by far the most known is using a subset of Python called Cython. This is a subset which allows to run actual C code instead of python code. This is not rocket science: Python WAS developed in C, so we are well within its range.
 
-In this project, I show how to improve the speed of python programs in Spark by recompiling them to C. We will create a program which reads from a Uber database.
-
-Then using SparkSQL we will sum the amount of trips per base number, and we will finally save the results in cvs files (in the code, at c:\results)
+In this project, I show how to improve the speed of python programs in Spark by recompiling them to C. We will create a program which reads from a Uber database. Then, using SparkSQL, we will sum the amount of trips per base number, and we will finally save the results in cvs files (in the code, at c:\results)
 
 We will need 3 tools, cython, easycython, and any C compiler only if you are running this on windows (unix already has one). Easycython is a script that will attempt to automatically convert one or more .pyx files into the corresponding compiled .pyd|.so binary modules files painlessly, avoiding the usual writing a setup.py each time
 
-1 – Download the Uber database from It can can be dowloaded from https://github.com/fivethirtyeight/uber-tlc-foil-response/blob/master/Uber-Jan-Feb-FOIL.csv Save it as uber.csv
+1 – Download the Uber database from https://github.com/fivethirtyeight/uber-tlc-foil-response/blob/master/Uber-Jan-Feb-FOIL.csv Save it as uber.csv
 
 2 – Install cython with the command pip install Cython or conda install Cython if you are using Anaconda Python
 
@@ -22,7 +20,7 @@ We will need 3 tools, cython, easycython, and any C compiler only if you are run
 
 6 – Convert the test.pyx using easycython test.pyx. This will convert the test.pyx files to C code called test.c and then compile in fact to test.pyd on windows or test.so on linux. You will see it created a lot of files and folders
 
-7 – Download the file test1.py. In it, you will find all it has is a single command:  import test
+7 – Download the file test1.py. In it, you will find all it has is a single command: import test. 
 
 8 – Run the file test1.py with the command spark-submit python test1.py uber.csv. This will actually import the files in C and execute them
 
